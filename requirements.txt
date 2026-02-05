@@ -27,7 +27,7 @@ namex==0.1.0
 numpy==2.4.2
 opt_einsum==3.4.0
 optree==0.18.0
-packaging @ file:///C:/miniconda3/conda-bld/packaging_1761049099114/work
+packaging ==24.2
 pandas==3.0.0
 pillow==12.1.0
 protobuf==6.33.5

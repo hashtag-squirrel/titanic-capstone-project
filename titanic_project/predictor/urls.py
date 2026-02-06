@@ -5,5 +5,5 @@ app_name='predictor'
 
 urlpatterns = [
    
-     re_path(r'^userform/', views.userform, name='userform'),
+     re_path(r'^userform/', views.userforminfo, name='userforminfo'),
 ]

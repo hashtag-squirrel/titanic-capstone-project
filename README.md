@@ -12,7 +12,7 @@ Clone the repository from GitHub using the method of your choice.
 
 1. Install either [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install) or [Anaconda](https://www.anaconda.com/download) according to the instructions from their website.
 
-2. Open Anaconda Prompt and type `conda create --name <envname> python=3.13`, exchange `envname` with your chosen environment name.
+2. Open Anaconda Prompt and type `conda create --name <envname> python=3.11`, exchange `envname` with your chosen environment name.
 
 3. Type `conda activate <envname>`, exchange `envname` with your chosen environment name.
 

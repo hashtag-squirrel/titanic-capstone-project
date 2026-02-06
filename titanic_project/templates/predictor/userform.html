@@ -2,13 +2,66 @@
 
 {% block body_block %}
 
-<div class="jumbotron">
-    <h1>Passenger Portal</h1>
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 600px;">
+    <h2 class="text-center mb-4">Passenger Portal</h2>
 
- <form enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        {{user_form.as_p}}      
-        <input type="submit" value="submit">
-     </form>
-    </div>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <!-- Full Name -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.full_name.label }}</label>
+        <div class="col-8">
+          {{ user_form.full_name }}
+        </div>
+      </div>
+
+      <!-- Age -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.age.label }}</label>
+        <div class="col-8">
+          {{ user_form.age }}
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.gender.label }}</label>
+        <div class="col-8">
+          {{ user_form.gender }}
+        </div>
+      </div>
+
+      <!-- Travel Class -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.travel_class.label }}</label>
+        <div class="col-8">
+          {{ user_form.travel_class }}
+        </div>
+      </div>
+
+      <!-- Port of Embarkation -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.port_of_embarkation.label }}</label>
+        <div class="col-8">
+          {{ user_form.port_of_embarkation }}
+        </div>
+      </div>
+
+     <!-- Cabin -->
+      <div class="row mb-3">
+        <label class="col-4 col-form-label">{{ user_form.cabin.label }}</label>
+        <div class="col-8">
+          {{ user_form.cabin }}
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 mt-3" type="submit">
+        Predict Survival
+      </button>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

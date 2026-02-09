@@ -19,5 +19,5 @@ from django.urls import path,re_path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^predictor/',include('predictor.urls')),
+    path(r'^predictor/',include('predictor.urls')),
 ]

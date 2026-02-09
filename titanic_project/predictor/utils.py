@@ -29,7 +29,7 @@ def preprocess_titanic_data(df):
    # Calculate Family size
     sibsp = df.get('SibSp', 0)
     parch = df.get('Parch', 0)
-    df['FamilySize'] = df['SibSp'] + df['Parch'] + 1
+    df['FamilySize'] = sibsp + parch + 1
 
     # 1 if alone, 0 if with family)
     df['isAlone'] = 0

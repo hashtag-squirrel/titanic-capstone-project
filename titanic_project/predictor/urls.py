@@ -1,9 +1,9 @@
-from django.urls import path,re_path,include
-from predictor import views
+from django.urls import path
+from . import views
 
-app_name='predictor'
+app_name = "predictor"
 
 urlpatterns = [
-   
-     path(r'^userform/', views.userforminfo, name='userforminfo'),
+    path("", views.home, name="home"),
+    path("userform/", views.userforminfo, name="userforminfo"),
 ]

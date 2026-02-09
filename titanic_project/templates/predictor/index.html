@@ -1,0 +1,81 @@
+{% extends "predictor/base.html" %}
+
+{% block body_block %}
+
+<div style="padding-left: 60px; padding-right: 60px;">
+    <h2 class="text-center">Titanic Survival Prediction System</h2>
+
+    <h3>Project Overview</h3>
+    <p>
+        This web application predicts the likelihood of survival of a passenger aboard
+        the RMS Titanic using a machine learning model trained on the Titanic passenger
+        dataset.
+    </p>
+    <p>
+    The system demonstrates the complete workflow of a data-driven web application,
+    from user input and validation to prediction, storage, and result visualization.
+    </p>
+    <p>
+    The model is trained on historical passenger data and produces probabilistic
+    predictions based on selected passenger attributes.
+    </p>
+
+    <h3>System Design</h3>
+    <p>
+    The application is structured into multiple pages, each with a specific responsibility:
+    </p>
+
+    <h4>1. Home Page</h4>
+    <p>
+    Provides an overview of the project, its purpose, and the system architecture.
+    </p>
+
+    <h4>2. Prediction Form Page</h4>
+    <p>
+    Allows users to enter passenger information such as class, age, sex, and family details.
+    </p>
+    <p>
+    All inputs are validated to ensure correctness and completeness before submission.
+    </p>
+
+    <h4>3. Results Page</h4>
+    <p>
+    Displays the predicted survival outcome along with the estimated probability of survival.
+    </p>
+    <p>
+    The results reflect patterns learned from the training dataset.
+    </p>
+
+    <h4>4. History Page</h4>
+    <p>
+    Shows previously submitted predictions stored in the system, enabling users to review
+    past inputs and outcomes.
+    </p>
+
+    <h3>Data and Model</h3>
+    <p>
+    The prediction model is trained using the Titanic passenger dataset, which contains
+    demographic and travel-related attributes.
+    </p>
+    <p>
+    Missing values are handled during preprocessing, and the model outputs a probability
+    score rather than a binary decision to better represent uncertainty.
+    </p>
+
+    <h3>Disclaimer</h3>
+    <p>
+        This application is intended for educational purposes only.
+    </p>
+    <p>
+    Predictions are based on historical data and do not represent certainty or real-world
+    decision-making.
+    </p>
+
+    <h3>Navigation</h3>
+    <p>
+        Use the navigation menu above to begin a prediction or explore previous results.
+    </p>
+
+</div>
+
+{% endblock %}

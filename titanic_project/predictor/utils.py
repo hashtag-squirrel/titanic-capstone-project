@@ -1,5 +1,8 @@
 # predictor/utils.py
 import pandas as pd
+import joblib
+from predictor.models import PredictionModel
+import numpy as np
 
 TITLE_AGE_DEFAULTS = {
     'Mr': 32.3, 'Mrs': 35.9, 'Miss': 21.8, 'Master': 4.5, 'Dr': 42.0
@@ -39,3 +42,30 @@ def preprocess_titanic_data(df):
     print(df[['isAlone', 'FamilySize', 'Survived']].head())
 
     return df
+
+
+def predict(data, user):
+    model = joblib.load('../ml_models/titanic_model.pkl')
+
+    df = pd.DataFrame({
+                'Pclass': int(data.get('travel_class')),
+                'Sex': int(data.get('gender')),
+                'Age': data.get('age')
+            }, index=[0])
+
+    test_df = pd.DataFrame({
+                'Pclass': int(data.get('travel_class')),
+                'Sex': int(data.get('gender')),
+                'Age': data.get('age'),
+                'SibSp': 1,
+                'Parch': 0,
+                'FamilySize': 1,
+            }, index=[0])
+
+    probability = model.predict_proba(test_df)
+    result = np.argmax(probability)
+
+    PredictionModel.objects.create(
+        input_data=user,
+        result=result,
+        probability=probability)

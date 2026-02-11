@@ -3,11 +3,11 @@ from django.db import models
 
 # Create your models here.
 class UserModel(models.Model):
-    title_choices=[
-       ('mr','Mr'),
-       ('mrs','Mrs'),
-       ('master','Master'),
-       ('miss','Miss'),
+    title_choices = [
+       ('mr', 'Mr'),
+       ('mrs', 'Mrs'),
+       ('master', 'Master'),
+       ('miss', 'Miss'),
     ]
 
     gender_choices = [
@@ -27,7 +27,7 @@ class UserModel(models.Model):
         ('S', 'Southampton')
     ]
 
-    title= models.CharField(max_length=100,choices=title_choices,blank=True)
+    title = models.CharField(max_length=100, choices=title_choices, blank=True)
     full_name = models.CharField(max_length=100, blank=True)
     age = models.IntegerField(blank=True, null=True)
     gender = models.CharField(
@@ -42,11 +42,11 @@ class UserModel(models.Model):
         max_length=10,
         choices=embarkation_choices,
         blank=True)
-    is_alone= models.BooleanField(default=False)
-    with_parents= models.BooleanField(default=False)
-    with_spouse= models.BooleanField(default=False)
-    with_children= models.BooleanField(default=False)
-    with_siblings= models.BooleanField(default=False)
+    is_alone = models.BooleanField(default=False)
+    with_parents = models.BooleanField(default=False)
+    with_spouse = models.BooleanField(default=False)
+    with_children = models.BooleanField(default=False)
+    with_siblings = models.BooleanField(default=False)
 
     def __str__(self):
         return self.full_name
@@ -59,4 +59,4 @@ class PredictionModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.result}'
+        return f'{self.input_data.full_name}'

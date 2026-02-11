@@ -26,7 +26,7 @@ def preprocess_titanic_data(df):
     # Verify
     print(f"Missing ages: {df['Age'].isnull().sum()}")
 
-   # Calculate Family size
+    # Calculate Family size
     sibsp = df.get('SibSp', 0)
     parch = df.get('Parch', 0)
     df['FamilySize'] = sibsp + parch + 1

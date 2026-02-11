@@ -38,3 +38,15 @@ class UserModel(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class PredictionModel(models.Model):
+    results = [(1, 'Survived'), (0, 'Deceased')]
+
+    input_data = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    result = models.CharField(max_length=10, choices=results)
+    probability = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.result

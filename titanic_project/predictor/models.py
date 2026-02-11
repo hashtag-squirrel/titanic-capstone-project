@@ -11,8 +11,8 @@ class UserModel(models.Model):
     ]
 
     gender_choices = [
-        ('male', 'Male'),
-        ('female', 'Female'),
+        ('0', 'Male'),
+        ('1', 'Female'),
     ]
 
     travel_class_choices = [
@@ -53,12 +53,10 @@ class UserModel(models.Model):
 
 
 class PredictionModel(models.Model):
-    results = [(1, 'Survived'), (0, 'Deceased')]
-
     input_data = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    result = models.CharField(max_length=10, choices=results)
-    probability = models.FloatField()
+    result = models.IntegerField()
+    probability = models.CharField(max_length=80)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.result
+        return f'{self.result}'

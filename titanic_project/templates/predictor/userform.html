@@ -1,67 +1,144 @@
-{% extends "predictor/base.html" %}
+{% extends "predictor/base.html" %} {% block body_block %}
 
-{% block body_block %}
+<style>
+  /* Only affects this page */
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 
-<div class="container mt-5">
-  <div class="card shadow-lg p-4 mx-auto" style="max-width: 600px;">
+  .form-row label {
+    width: 30%;
+    margin: 0;
+  }
+
+  .form-row .form-field {
+    width: 70%;
+  }
+
+  .form-row input,
+  .form-row select {
+    width: 100%;
+  }
+
+  .center-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .center-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+  }
+</style>
+
+<div class="center-wrapper">
+  <div class="center-card">
     <h2 class="text-center mb-4">Passenger Portal</h2>
 
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
       <!-- Full Name -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.full_name.label }}</label>
-        <div class="col-8">
+      <div class="form-row">
+        <label>{{ user_form.full_name.label }}</label>
+
+        <div class="form-field" style="width: 20%; margin-right: 10px">
+          {{ user_form.title }}
+        </div>
+
+        <div class="form-field" style="width: 50%">
           {{ user_form.full_name }}
         </div>
       </div>
 
       <!-- Age -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.age.label }}</label>
-        <div class="col-8">
-          {{ user_form.age }}
-        </div>
+
+      <div class="form-row">
+        <label>{{ user_form.age.label }}</label>
+        <div class="form-field">{{ user_form.age }}</div>
       </div>
 
       <!-- Gender -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.gender.label }}</label>
-        <div class="col-8">
-          {{ user_form.gender }}
-        </div>
+      <div class="form-row">
+        <label>{{ user_form.gender.label }}</label>
+        <div class="form-field">{{ user_form.gender }}</div>
       </div>
 
       <!-- Travel Class -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.travel_class.label }}</label>
-        <div class="col-8">
-          {{ user_form.travel_class }}
-        </div>
+      <div class="form-row">
+        <label>{{ user_form.travel_class.label }}</label>
+        <div class="form-field">{{ user_form.travel_class }}</div>
       </div>
 
       <!-- Port of Embarkation -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.port_of_embarkation.label }}</label>
-        <div class="col-8">
-          {{ user_form.port_of_embarkation }}
+      <div class="form-row">
+        <label>{{ user_form.port_of_embarkation.label }}</label>
+        <div class="form-field">{{ user_form.port_of_embarkation }}</div>
+      </div>
+
+      <!-- Travelled with -->
+      <div>
+        <label>Travelled</label>
+        <div>
+          <label class="checkbox-inline">
+            {{ user_form.is_alone }} Alone
+          </label>
+          <label class="checkbox-inline">
+            {{ user_form.with_parents }} With parents
+          </label>
+          <label class="checkbox-inline">
+            {{ user_form.with_spouse }} With spouse
+          </label>
+          <label class="checkbox-inline">
+            {{ user_form.with_children }} With children
+          </label>
+          <label class="checkbox-inline">
+            {{ user_form.with_siblings }} With siblings
+          </label>
         </div>
       </div>
 
-     <!-- Cabin -->
-      <div class="row mb-3">
-        <label class="col-4 col-form-label">{{ user_form.cabin.label }}</label>
-        <div class="col-8">
-          {{ user_form.cabin }}
-        </div>
+      <div class="text-center" style="margin-top: 25px">
+        <button
+          class="btn btn-primary btn-block"
+          style="width: 100%"
+          type="submit"
+        >
+          Predict Survival
+        </button>
       </div>
-
-      <button class="btn btn-primary w-100 mt-3" type="submit">
-        Predict Survival
-      </button>
     </form>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const alone = document.getElementById("id_is_alone");
+    const others = [
+      document.getElementById("id_with_parents"),
+      document.getElementById("id_with_spouse"),
+      document.getElementById("id_with_children"),
+      document.getElementById("id_with_siblings"),
+    ];
+
+    alone.addEventListener("change", function () {
+      if (alone.checked) {
+        others.forEach((cb) => {
+          cb.checked = false;
+          cb.disabled = true;
+        });
+      } else {
+        others.forEach((cb) => (cb.disabled = false));
+      }
+    });
+  });
+</script>
 
 {% endblock %}

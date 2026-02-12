@@ -1,0 +1,29 @@
+{% extends "predictor/base.html" %}
+
+{% block body_block %}
+<div class="container">
+    <h2 class="text-center">Survival Analysis Result</h2>
+
+    <div class="card">
+        <div>
+            {% if result == 1 %}
+            <h3>CONGRATULATIONS</h3>
+            <p>You would have <strong>Survived</strong> the disaster.</p>
+            {% else %}
+            <h3>SORRY</h3>
+            <p>You would <strong>Not Have Survived</strong>.</p>
+            {% endif %}
+
+            <hr>
+
+            <h4>Probability of Survival</h4>
+            <div class="card">
+                <div>
+                    {{ probability }}%
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

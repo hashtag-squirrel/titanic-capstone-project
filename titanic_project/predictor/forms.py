@@ -24,10 +24,10 @@ class UserForm(forms.ModelForm):
             'travel_class',            
             'is_alone',
             'with_parents',
-            'parents_count'
+            'parents_count',
             'with_spouse',
-            'spouse_count'
-            'with_children'
+            'spouse_count',
+            'with_children',
             'children_count',
             'with_siblings',
             'siblings_count')

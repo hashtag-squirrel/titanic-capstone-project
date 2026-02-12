@@ -35,13 +35,13 @@ class UserModel(models.Model):
 
     is_alone= models.BooleanField(default=False)
     with_parents= models.BooleanField(default=False)
-    parents_count= models.IntegerField(default=0)
+    parents_count=models.IntegerField(null=True, blank=True)
     with_spouse= models.BooleanField(default=False)
-    spouse_count= models.IntegerField(default=0)
+    spouse_count= models.IntegerField(null=True, blank=True)
     with_children= models.BooleanField(default=False)
-    children_count= models.IntegerField(default=0)
+    children_count= models.IntegerField(null=True, blank=True)
     with_siblings= models.BooleanField(default=False)
-    siblings_count = models.IntegerField(default=0)
+    siblings_count = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.full_name

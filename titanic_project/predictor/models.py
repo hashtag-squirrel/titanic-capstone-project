@@ -32,17 +32,6 @@ class UserModel(models.Model):
         max_length=10,
         choices=travel_class_choices,
         blank=True)
-<<<<<<< HEAD
-    port_of_embarkation = models.CharField(
-        max_length=10,
-        choices=embarkation_choices,
-        blank=True)
-    is_alone = models.BooleanField(default=False)
-    with_parents = models.BooleanField(default=False)
-    with_spouse = models.BooleanField(default=False)
-    with_children = models.BooleanField(default=False)
-    with_siblings = models.BooleanField(default=False)
-=======
 
     is_alone= models.BooleanField(default=False)
     with_parents= models.BooleanField(default=False)
@@ -53,7 +42,6 @@ class UserModel(models.Model):
     children_count=models.BooleanField(default=False)
     with_siblings= models.BooleanField(default=False)
     sibilings_count=models.BooleanField(default=False)
->>>>>>> origin/main
 
     def __str__(self):
         return self.full_name

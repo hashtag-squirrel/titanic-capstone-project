@@ -87,7 +87,13 @@ To evaluate the model performance we used three different methods.
 
 1. Accuracy
 
-    The first evaluation was done using scikit-learn's `score()` function, which evaluated the model at 83.80% accuracy. We also used `cross_val_score` and got an average accuracy of 82.27%.
+    Accuracy was used as an initial metric to evaluate the overall performance of the model.
+
+    The first evaluation was performed using scikit-learn’s score() function on the test set, resulting in an accuracy of 83.80%. This means that approximately 84% of the passengers in the test data were correctly classified as either survivors or non-survivors.
+
+    To obtain a more robust estimate of the model’s performance, we also applied cross-validation using cross_val_score. This method evaluates the model across multiple train/test splits and averages the results, reducing the risk that the performance estimate is biased by a single split of the data. The mean cross-validation accuracy was 82.27%.
+
+    The relatively small difference between the test accuracy (83.80%) and the cross-validated average (82.27%) indicates that the model performs consistently and does not appear to be significantly overfitting. Overall, the accuracy results confirm that the model provides reliable predictions on unseen data.
 
 2. Confusion Matrix
 

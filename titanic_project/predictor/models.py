@@ -16,15 +16,9 @@ class UserModel(models.Model):
     ]
 
     travel_class_choices = [
-        ('1', '1st'),
-        ('2', '2nd'),
-        ('3', '3rd')
-    ]
-
-    embarkation_choices = [
-        ('C', 'Cherbourg'),
-        ('Q', 'Queenstown'),
-        ('S', 'Southampton')
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3')
     ]
 
     title= models.CharField(max_length=100,choices=title_choices,blank=True)
@@ -38,15 +32,16 @@ class UserModel(models.Model):
         max_length=10,
         choices=travel_class_choices,
         blank=True)
-    port_of_embarkation = models.CharField(
-        max_length=10,
-        choices=embarkation_choices,
-        blank=True)
+
     is_alone= models.BooleanField(default=False)
     with_parents= models.BooleanField(default=False)
+    parents_count=models.BooleanField(default=False)
     with_spouse= models.BooleanField(default=False)
+    spouse_count=models.BooleanField(default=False)
     with_children= models.BooleanField(default=False)
+    children_count=models.BooleanField(default=False)
     with_siblings= models.BooleanField(default=False)
+    sibilings_count=models.BooleanField(default=False)
 
     def __str__(self):
         return self.full_name

@@ -75,18 +75,22 @@ def predict(data, user):
     family_size = calc_family_size(sibsp, parch)
 
     df = pd.DataFrame({
-                'Pclass': int(data.get('travel_class')),
-                'Sex': int(data.get('gender')),
-                'Age': data.get('age'),
-                'SibSp': sibsp,
-                'Parch': parch,
-                'FamilySize': family_size,
-            }, index=[0])
+        'Pclass': int(data.get('travel_class')),
+        'Sex': int(data.get('gender')),
+        'Age': data.get('age'),
+        'SibSp': sibsp,
+        'Parch': parch,
+        'FamilySize': family_size,
+    }, index=[0])
 
     probability = model.predict_proba(df)
     result = np.argmax(probability)
 
+    survival_probability = round(float(probability[0][1]) * 100, 2)
+
     PredictionModel.objects.create(
         input_data=user,
         result=result,
-        probability=probability)
+        probability=survival_probability)
+
+    return result, survival_probability

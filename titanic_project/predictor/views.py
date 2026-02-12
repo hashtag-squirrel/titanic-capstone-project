@@ -16,9 +16,13 @@ def userforminfo(request):
         if user_form.is_valid():
             user = user_form.save()
             data = request.POST
-            predict(data, user)
+            prediction_output,prob_value = predict(data, user)
 
-            return redirect(reverse('predictor:home'))
+            return render(request, 'predictor/results.html', {
+                'result': prediction_output,
+                'probability': prob_value,
+                'user': user
+            })
 
         else:
             print(user_form.errors)

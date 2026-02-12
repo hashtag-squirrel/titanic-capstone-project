@@ -83,7 +83,7 @@ This configuration provided a good balance between predictive performance and mo
 
 ### Model Performance
 
-To evaluate the model performance we used three different methods. 
+To evaluate the model performance we used three different methods.
 
 1. Accuracy
 
@@ -129,10 +129,17 @@ To evaluate the model performance we used three different methods.
 
 3. ROC-AUC
 
-    Lastly, we evaluated using ROC-AUC.
+    In addition to accuracy and the confusion matrix, we evaluated the model using the Receiver Operating Characteristic – Area Under the Curve (ROC–AUC) metric.
 
-> [!WARNING]  
-> This section needs to be written
+    The ROC curve measures the trade-off between the true positive rate (recall) and the false positive rate across different classification thresholds. Instead of evaluating the model at a single fixed threshold (such as 0.5), ROC–AUC assesses how well the model separates the two classes overall.
+
+    Our model achieved an ROC–AUC score of:
+
+    0.8963
+
+    An ROC–AUC score ranges from 0.5 (no discriminative power, equivalent to random guessing) to 1.0 (perfect classification). A value of 0.8963 indicates strong class separability, meaning the model is highly capable of distinguishing between survivors and non-survivors across a wide range of thresholds.
+
+    This relatively high ROC–AUC score confirms that the model’s predictive performance is robust, even beyond the single-threshold accuracy metric, and suggests that it generalizes well to unseen data.
 
 ## Overview of the system architecture
 

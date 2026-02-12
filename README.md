@@ -91,10 +91,41 @@ To evaluate the model performance we used three different methods.
 
 2. Confusion Matrix
 
-    Next, we evaluated the model using a confusion matrix.
+    To evaluate the performance of the model further, we used a confusion matrix along with standard classification metrics such as precision, recall, and F1-score.
 
-> [!WARNING]  
-> This section needs to be written
+    Confusion matrix (rows: actual, columns: predicted):
+
+    ``` python
+    [[95 10]
+    [19 55]]
+    ```
+
+    This matrix can be interpreted as follows:
+
+    - 95 true negatives: passengers who did not survive and were correctly predicted as non-survivors
+    - 55 true positives: passengers who survived and were correctly predicted as survivors
+    - 10 false positives: passengers who did not survive but were predicted as survivors
+    - 19 false negatives: passengers who survived but were predicted as non-survivors
+
+    Overall, the model achieved an accuracy of 0.84 on the test set (179 samples).
+
+    Class-wise performance:
+
+    - Class 0 (did not survive):
+
+        - Precision: 0.83
+        - Recall: 0.90
+        - F1-score: 0.87
+
+    - Class 1 (survived):
+
+        - Precision: 0.85
+        - Recall: 0.74
+        - F1-score: 0.79
+
+    The higher recall for class 0 indicates that the model is particularly strong at correctly identifying non-survivors. However, the lower recall for class 1 shows that some surviving passengers are misclassified as non-survivors.
+
+    The macro and weighted averages (both around 0.83–0.84) indicate balanced overall performance across classes, with no severe class imbalance issues. Overall, the model demonstrates solid predictive capability while still leaving room for improvement, particularly in increasing recall for surviving passengers.
 
 3. ROC-AUC
 

@@ -75,3 +75,22 @@ class UserForm(forms.ModelForm):
         self.fields["gender"].required = True
         self.fields["travel_class"].required = True
 
+   
+    def clean(self):
+        cleaned_data = super().clean()
+
+        is_alone = cleaned_data.get("is_alone")
+        with_parents = cleaned_data.get("with_parents")
+        with_spouse = cleaned_data.get("with_spouse")
+        with_children = cleaned_data.get("with_children")
+        with_siblings = cleaned_data.get("with_siblings")
+
+       
+        if not (is_alone or with_parents or with_spouse or with_children or with_siblings):
+            raise forms.ValidationError(
+                "Please select at least one option from travelled."
+            )
+
+        return cleaned_data
+
+

@@ -1,6 +1,5 @@
 {% extends "predictor/base.html" %} {% block body_block %} {% load crispy_forms_tags %}
 <style>
-  
   .form-row {
     display: flex;
     align-items: center;
@@ -133,6 +132,13 @@
           <label>{{ user_form.with_siblings }} With siblings</label>
           {{ user_form.siblings_count }}
         </div>
+      </div>
+      <div style="min-height: 22px; margin-bottom: 8px">
+        {% if user_form.non_field_errors %}
+        <div style="color: red; font-size: 1rem; font-weight: 500;">
+          {{ user_form.non_field_errors }}
+        </div>
+        {% endif %}
       </div>
 
       <div class="text-center" style="margin-top: 25px">

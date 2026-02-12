@@ -42,6 +42,7 @@ class UserForm(forms.ModelForm):
             'with_parents': forms.CheckboxInput(),
             'with_spouse': forms.CheckboxInput(),
             'with_children': forms.CheckboxInput(),
+            'with_siblings':forms.CheckboxInput(),
             'parents_count': forms.NumberInput(
                 attrs={'class': 'count-input',
                        'min': 1,

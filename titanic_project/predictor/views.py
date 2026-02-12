@@ -31,3 +31,7 @@ def userforminfo(request):
         user_form = UserForm()
 
     return render(request, 'predictor/userform.html', {'user_form': user_form})
+
+
+def history_page(request):
+    return render(request, 'predictor/history-page.html')

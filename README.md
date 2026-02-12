@@ -69,9 +69,17 @@ If you want, I can also tighten it further or make it more technically detailed 
 
 ### Model Algorithm
 
-As a model algorithm, we chose the [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html).
+As our learning algorithm, we chose the [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) from scikit-learn.
 
-Every team member tried out one of more models and this model was chosen due to its relatively good performance at 83% accuracy.
+Each team member experimented with one or more candidate models and compared their performance. Based on these evaluations, the RandomForestClassifier was selected due to its strong overall performance, achieving an accuracy of 83% on our validation data.
+
+The final model was trained with the following hyperparameters:
+
+- n_estimators = 100
+- max_depth = 5
+- random_state = 42
+
+This configuration provided a good balance between predictive performance and model complexity, while keeping the model robust against overfitting.
 
 ### Model Performance
 
@@ -79,19 +87,26 @@ To evaluate the model performance we used three different methods.
 
 1. Accuracy
 
-The first evaluation was done using scikit-learn's `score()` function, which evaluated the model at 83.80% accuracy. We also used `cross_val_score` and got an average accuracy of 82.27%.
+    The first evaluation was done using scikit-learn's `score()` function, which evaluated the model at 83.80% accuracy. We also used `cross_val_score` and got an average accuracy of 82.27%.
 
 2. Confusion Matrix
 
-Next, we evaluated the model using a confusion matrix.
+    Next, we evaluated the model using a confusion matrix.
+
 > [!WARNING]  
 > This section needs to be written
 
 3. ROC-AUC
 
-Lastly, we evaluated using ROC-AUC.
+    Lastly, we evaluated using ROC-AUC.
+
 > [!WARNING]  
 > This section needs to be written
 
 ## Overview of the system architecture
 
+The system is implemented as a full-stack Django application that integrates the trained machine learning model directly into the backend. The trained model is serialized and stored as a pickle file, which is loaded by the Django application at runtime. Prediction logic and supporting functionality are encapsulated in helper functions within the app’s utils.py module, keeping the code modular and maintainable.
+
+For data persistence, the project uses SQLite, Django’s default database, which provides a lightweight and straightforward setup suitable for development and deployment in this context.
+
+In addition to the web application, Jupyter notebooks are included in the repository for exploratory data analysis, preprocessing, feature engineering, and visualization. These notebooks document the analytical workflow and model development process, serving as both development artifacts and reproducible documentation of the machine learning pipeline.

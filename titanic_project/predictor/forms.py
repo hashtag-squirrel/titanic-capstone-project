@@ -12,10 +12,7 @@ class UserForm(forms.ModelForm):
         required=False)
     travel_class = forms.ChoiceField(
         choices=[('', 'select')] + UserModel.travel_class_choices,
-        required=False)
-    port_of_embarkation = forms.ChoiceField(
-        choices=[('', 'select')] + UserModel.embarkation_choices,
-        required=False)
+        required=False)   
 
     class Meta():
         model = UserModel
@@ -24,13 +21,16 @@ class UserForm(forms.ModelForm):
             'full_name',
             'age',
             'gender',
-            'travel_class',
-            'port_of_embarkation',
+            'travel_class',            
             'is_alone',
             'with_parents',
+            'parents_count'
             'with_spouse',
-            'with_children',
-            'with_siblings')
+            'spouse_count'
+            'with_children'
+            'children_count',
+            'with_siblings',
+            'siblings_count')
         widgets = {
             'full_name': forms.TextInput(attrs={
                 'placeholder': 'Enter full name',

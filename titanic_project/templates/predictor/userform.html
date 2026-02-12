@@ -1,7 +1,6 @@
-{% extends "predictor/base.html" %} {% block body_block %}
-
+{% extends "predictor/base.html" %} {% block body_block %} {% load crispy_forms_tags %}
 <style>
-  /* Only affects this page */
+  
   .form-row {
     display: flex;
     align-items: center;
@@ -54,6 +53,12 @@
     font-size: 1rem;
     text-align: center;
     border-radius: 4px;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 </style>
 
@@ -108,49 +113,25 @@
         <!-- With parents -->
         <div class="travel-option">
           <label>{{ user_form.with_parents }} With parents</label>
-          <input
-            id="parents_count"
-            name="parents_count"
-            class="count-input"
-            placeholder="Specify count"
-            min="1"
-          />
+          {{ user_form.parents_count }}
         </div>
 
         <!-- With spouse -->
         <div class="travel-option">
           <label>{{ user_form.with_spouse }} With spouse</label>
-          <input
-            id="spouse_count"
-            name="spouse_count"
-            class="count-input"
-            placeholder="Specify count"
-            min="1"
-          />
+          {{ user_form.spouse_count }}
         </div>
 
         <!-- With children -->
         <div class="travel-option">
           <label>{{ user_form.with_children }} With children</label>
-          <input
-            id="children_count"
-            name="children_count"
-            class="count-input"
-            placeholder="Specify count"
-            min="1"
-          />
+          {{ user_form.children_count }}
         </div>
 
         <!-- With siblings -->
         <div class="travel-option">
           <label>{{ user_form.with_siblings }} With siblings</label>
-          <input
-            id="siblings_count"
-            name="siblings_count"
-            class="count-input"
-            placeholder="Specify count"
-            min="1"
-          />
+          {{ user_form.siblings_count }}
         </div>
       </div>
 
@@ -170,25 +151,86 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const alone = document.getElementById("id_is_alone");
+    const with_parents = document.getElementById("id_with_parents");
+    const parents_count = document.getElementById("id_parents_count");
+    const with_spouse = document.getElementById("id_with_spouse");
+    const spouse_count = document.getElementById("id_spouse_count");
+    const with_siblings = document.getElementById("id_with_siblings");
+    const siblings_count = document.getElementById("id_siblings_count");
+    const with_children = document.getElementById("id_with_children");
+    const children_count = document.getElementById("id_children_count");
+
     const others = [
       document.getElementById("id_with_parents"),
       document.getElementById("id_with_spouse"),
       document.getElementById("id_with_children"),
       document.getElementById("id_with_siblings"),
+    ];
+    const other_count = [
       document.getElementById("id_parents_count"),
       document.getElementById("id_spouse_count"),
       document.getElementById("id_children_count"),
       document.getElementById("id_siblings_count"),
     ];
 
+    other_count.forEach((cb) => (cb.disabled = true));
     alone.addEventListener("change", function () {
       if (alone.checked) {
         others.forEach((cb) => {
           cb.checked = false;
           cb.disabled = true;
         });
+        other_count.forEach((i) => {
+          i.disabled = true;
+          i.value = "";
+        });
       } else {
         others.forEach((cb) => (cb.disabled = false));
+        other_count.forEach((cb) => (cb.disabled = true));
+      }
+    });
+
+    with_parents.addEventListener("change", function () {
+      if (with_parents.checked) {
+        parents_count.disabled = false;
+        parents_count.required = true;
+      } else {
+        parents_count.disabled = true;
+        parents_count.value = "";
+        parents_count.required = false;
+      }
+    });
+
+    with_siblings.addEventListener("change", function () {
+      if (with_siblings.checked) {
+        siblings_count.disabled = false;
+        siblings_count.required = true;
+      } else {
+        siblings_count.disabled = true;
+        siblings_count.value = "";
+        siblings_count.required = false;
+      }
+    });
+
+    with_spouse.addEventListener("change", function () {
+      if (with_spouse.checked) {
+        spouse_count.disabled = false;
+        spouse_count.required = true;
+      } else {
+        spouse_count.disabled = true;
+        spouse_count.value = "";
+        spouse_count.required = false;
+      }
+    });
+
+    with_children.addEventListener("change", function () {
+      if (with_children.checked) {
+        children_count.disabled = false;
+        children_count.required = true;
+      } else {
+        children_count.disabled = true;
+        children_count.value = "";
+        children_count.required = false;
       }
     });
   });

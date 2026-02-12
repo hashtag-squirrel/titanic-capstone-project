@@ -42,6 +42,36 @@ class UserForm(forms.ModelForm):
             'with_parents': forms.CheckboxInput(),
             'with_spouse': forms.CheckboxInput(),
             'with_children': forms.CheckboxInput(),
-            'with_siblings': forms.CheckboxInput(), 
+            'parents_count': forms.NumberInput(
+                attrs={'class': 'count-input',
+                       'min': 1,
+                       'max':10,
+                       'placeholder':'Specify count'}),
+
+            'spouse_count': forms.NumberInput(
+                attrs={'class': 'count-input',
+                       'min': 1,
+                       'max':10,
+                       'placeholder':'Specify count'}),
+            'children_count': forms.NumberInput(
+                attrs={'class': 'count-input',
+                       'min': 1,
+                       'max':10,
+                       'placeholder':'Specify count'}),
+
+            'siblings_count': forms.NumberInput(
+                attrs={'class': 'count-input',
+                       'min': 1,
+                       'max':10,
+                       'placeholder':'Specify count'}),
+
 
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["age"].required = True
+        self.fields["gender"].required = True
+        self.fields["travel_class"].required = True
+

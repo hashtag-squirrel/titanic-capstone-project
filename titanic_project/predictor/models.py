@@ -23,15 +23,15 @@ class UserModel(models.Model):
 
     title= models.CharField(max_length=100,choices=title_choices,blank=True)
     full_name = models.CharField(max_length=100, blank=True)
-    age = models.IntegerField(blank=True, null=True)
+    age = models.IntegerField(blank=False, null=False)
     gender = models.CharField(
         max_length=10,
         choices=gender_choices,
-        blank=True)
+        blank=False)
     travel_class = models.CharField(
         max_length=10,
         choices=travel_class_choices,
-        blank=True)
+        blank=False)
 
     is_alone= models.BooleanField(default=False)
     with_parents= models.BooleanField(default=False)

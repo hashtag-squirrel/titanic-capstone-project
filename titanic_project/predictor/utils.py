@@ -44,25 +44,46 @@ def preprocess_titanic_data(df):
     return df
 
 
+def calc_sibsp(siblings_count, spouse_count):
+    if siblings_count == '':
+        siblings_count = 0
+    if spouse_count == '':
+        spouse_count = 0
+    sibsp = int(siblings_count) + int(spouse_count)
+    return sibsp
+
+
+def calc_parch(parents_count, children_count):
+    if parents_count == '':
+        parents_count = 0
+    if children_count == '':
+        children_count = 0
+    parch = int(parents_count) + int(children_count)
+    return parch
+
+
+def calc_family_size(sibsp, parch):
+    family_size = int(sibsp) + int(parch) + 1
+    return family_size
+
+
 def predict(data, user):
     model = joblib.load('../ml_models/titanic_model.pkl')
+
+    sibsp = calc_sibsp(data.get('siblings_count'), data.get('spouse_count'))
+    parch = calc_parch(data.get('parents_count'), data.get('children_count'))
+    family_size = calc_family_size(sibsp, parch)
 
     df = pd.DataFrame({
                 'Pclass': int(data.get('travel_class')),
                 'Sex': int(data.get('gender')),
-                'Age': data.get('age')
-            }, index=[0])
-
-    test_df = pd.DataFrame({
-                'Pclass': int(data.get('travel_class')),
-                'Sex': int(data.get('gender')),
                 'Age': data.get('age'),
-                'SibSp': 1,
-                'Parch': 0,
-                'FamilySize': 1,
+                'SibSp': sibsp,
+                'Parch': parch,
+                'FamilySize': family_size,
             }, index=[0])
 
-    probability = model.predict_proba(test_df)
+    probability = model.predict_proba(df)
     result = np.argmax(probability)
 
     PredictionModel.objects.create(

@@ -54,6 +54,13 @@
     border-radius: 4px;
   }
 
+  .travel-error-text {
+  color: red;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -133,9 +140,9 @@
           {{ user_form.siblings_count }}
         </div>
       </div>
-      <div style="min-height: 22px; margin-bottom: 8px">
+      <div class="travel-error-box" style="min-height: 30px; margin-bottom: 8px;">
         {% if user_form.non_field_errors %}
-        <div style="color: red; font-size: 1rem; font-weight: 500;">
+        <div style="color: red; font-size: 1rem; font-weight: 500">
           {{ user_form.non_field_errors }}
         </div>
         {% endif %}
@@ -238,6 +245,29 @@
         children_count.value = "";
         children_count.required = false;
       }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const errorBox = document.querySelector(".travel-error-box");
+
+    const checkboxes = [
+      document.getElementById("id_is_alone"),
+      document.getElementById("id_with_parents"),
+      document.getElementById("id_with_spouse"),
+      document.getElementById("id_with_children"),
+      document.getElementById("id_with_siblings"),
+    ];
+
+    function hideErrorIfChecked() {
+      const anyChecked = checkboxes.some((cb) => cb.checked);
+      if (anyChecked && errorBox) {
+        errorBox.style.visibility = "hidden";
+      }
+    }
+
+    checkboxes.forEach((cb) => {
+      cb.addEventListener("change", hideErrorIfChecked);
     });
   });
 </script>

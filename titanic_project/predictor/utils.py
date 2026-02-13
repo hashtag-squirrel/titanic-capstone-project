@@ -45,18 +45,18 @@ def preprocess_titanic_data(df):
 
 
 def calc_sibsp(siblings_count, spouse_count):
-    if siblings_count == '':
+    if siblings_count in [None, '']:
         siblings_count = 0
-    if spouse_count == '':
+    if spouse_count in [None, '']:
         spouse_count = 0
     sibsp = int(siblings_count) + int(spouse_count)
     return sibsp
 
 
 def calc_parch(parents_count, children_count):
-    if parents_count == '':
+    if parents_count in [None, '']:
         parents_count = 0
-    if children_count == '':
+    if children_count in [None, '']:
         children_count = 0
     parch = int(parents_count) + int(children_count)
     return parch

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from django.urls import reverse
 from predictor.forms import UserForm
 from predictor.utils import predict
+from .models import PredictionModel
 
 
 def home(request):
@@ -31,3 +33,7 @@ def userforminfo(request):
         user_form = UserForm()
 
     return render(request, 'predictor/userform.html', {'user_form': user_form})
+
+
+class HistoryListView(ListView):
+    model = PredictionModel

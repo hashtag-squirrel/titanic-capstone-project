@@ -1,0 +1,133 @@
+{% extends "predictor/base.html" %}
+{% block body_block %}
+    <style>
+        .history-page {
+            min-height: 60vh;
+        }
+
+        .title {
+            margin-bottom: 4rem;
+        }
+    </style>
+
+    <section class="history-page">
+        <div class="container">
+            <h2 class="title">History Page</h2>
+
+            {% if object_list %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Title</th>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Travel Class</th>
+                            <th>Parents</th>
+                            <th>Spouse</th>
+                            <th>Siblings</th>
+                            <th>Children</th>
+                            <th>Probability</th>
+                            <th>Prediction</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in object_list %}
+                            <tr>
+                                <td>
+                                    {% if item.input_data.title %}
+                                        {{ item.input_data.title|capfirst }}
+                                    {% else %}
+                                        No title provided
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.full_name %}
+                                        {{ item.input_data.full_name|capfirst }}
+                                    {% else %}
+                                        No name provided
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.age %}
+                                        {{ item.input_data.age }}
+                                    {% else %}
+                                        No age provided
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.gender is None %}
+                                        No gender provided
+                                    {% elif  item.input_data.gender == '1' %}
+                                        Female
+                                    {% else %}
+                                        Male
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.travel_class %}
+                                        {{ item.input_data.travel_class }} class
+                                    {% else %}
+                                        No travel class provided
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.with_parents %}
+                                        {{ item.input_data.parents_count }}
+                                    {% else %}
+                                        No parents
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.with_spouse %}
+                                        Traveled with spouse
+                                    {% else %}
+                                        No spouse
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.with_siblings %}
+                                        {{ item.input_data.siblings_count }}
+                                    {% else %}
+                                        No siblings
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.input_data.with_children %}
+                                        {{ item.input_data.children_count }}
+                                    {% else %}
+                                        No children
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <strong>{{ item.probability }}%</strong>
+                                </td>
+                                <td>
+                                    {% if item.result %}
+                                        <span class="label label-success">Survived</span>
+                                    {% else %}
+                                        <span class="label label-danger">Did not survive</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center empty-history" style="padding: 60px 20px;">
+                    <h3 class="text-muted">No prediction history yet</h3>
+                    <p class="text-muted" style="margin-bottom: 25px;">
+                        There haven’t been any predictions yet.
+                    </p>
+
+                    <a href="{% url 'predictor:userforminfo' %}"
+                       class="btn btn-primary btn-lg">
+                        Create Your First Prediction
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

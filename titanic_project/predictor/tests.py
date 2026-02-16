@@ -23,3 +23,24 @@ class UserModelTest(TestCase):
         self.assertEqual(self.user.age, 30)
         self.assertEqual(self.user.gender, '0')
 
+# Test creating a PreditionModel
+class PredictionModelTest(TestCase):
+
+    def setUp(self):
+        self.user = UserModel.objects.create(
+            title='mrs',
+            full_name='Jane Doe',
+            age=28,
+            gender='1',
+            travel_class='2'
+        )
+
+        self.prediction = PredictionModel.objects.create(
+            input_data=self.user,
+            result=1,
+            probability="0.82"
+        )
+
+    def test_prediction_creation(self):
+        self.assertEqual(self.prediction.result, 1)
+        self.assertEqual(self.prediction.probability, "0.82")

@@ -24,7 +24,7 @@ class UserModelTest(TestCase):
         self.assertEqual(self.user.age, 30)
         self.assertEqual(self.user.gender, '0')
 
-# Test creating a PreditionModel
+# # Test creating a PredictionModel
 class PredictionModelTest(TestCase):
 
     def setUp(self):

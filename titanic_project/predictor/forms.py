@@ -37,6 +37,7 @@ class UserForm(forms.ModelForm):
                 'class': 'form-control'}),
             'age': forms.NumberInput(attrs={
                 'placeholder': 'Enter age',
+                'max':100,
                 'class': 'form-control'}),
             'is_alone': forms.CheckboxInput(),
             'with_parents': forms.CheckboxInput(),

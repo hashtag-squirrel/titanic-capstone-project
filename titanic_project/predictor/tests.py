@@ -99,3 +99,10 @@ class ViewTest(TestCase):
         self.assertTemplateUsed(response, "predictor/results.html")
         self.assertContains(response, "0.85")
 
+
+# History page test
+    def test_history_page_loads(self):
+        response = self.client.get(reverse("predictor:history-page"))
+        self.assertEqual(response.status_code, 200)
+
+

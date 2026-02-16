@@ -18,12 +18,12 @@ def userforminfo(request):
         if user_form.is_valid():
             user = user_form.save()
             data = request.POST
-            prediction_output,prob_value = predict(data, user)
+            prediction_output, prob_value = predict(data, user)
 
             return render(request, 'predictor/results.html', {
                 'result': prediction_output,
                 'probability': prob_value,
-                'user': user
+                'passenger': user
             })
 
         else:

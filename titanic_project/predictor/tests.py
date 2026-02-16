@@ -44,3 +44,19 @@ class PredictionModelTest(TestCase):
     def test_prediction_creation(self):
         self.assertEqual(self.prediction.result, 1)
         self.assertEqual(self.prediction.probability, "0.82")
+
+# Form test
+class UserFormTest(TestCase):
+
+    def test_valid_form(self):
+        form_data = {
+            "title": "mr",
+            "full_name": "Test User",
+            "age": 25,
+            "gender": "0",
+            "travel_class": "1",
+            "is_alone": True,
+        }
+
+        form = UserForm(data=form_data)
+        self.assertTrue(form.is_valid())

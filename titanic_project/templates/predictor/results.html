@@ -7,10 +7,10 @@
     <div class="card">
         <div>
             {% if result == 1 %}
-            <h3>CONGRATULATIONS</h3>
+            <h3>CONGRATULATIONS {{passenger.title|capfirst}}.{{passenger.full_name|capfirst}}</h3>
             <p>You would have <strong>Survived</strong> the disaster.</p>
             {% else %}
-            <h3>SORRY</h3>
+            <h3>SORRY {{passenger.title|capfirst}}.{{passenger.full_name|capfirst}}</h3>
             <p>You would <strong>Not Have Survived</strong>.</p>
             {% endif %}
 
@@ -21,6 +21,12 @@
                 <div>
                     {{ probability }}%
                 </div>
+            </div>
+
+            <hr>
+
+            <div>
+                <a href="{% url 'predictor:home' %}" class="btn btn-primary">Go Home</a>
             </div>
 
         </div>
